@@ -121,7 +121,12 @@ const HomePage = () => {
             {/* Search Results Dropdown */}
             {searchQuery.trim() && searchResults.length > 0 && (
               <div 
-                className="mt-3 bg-white rounded-2xl shadow-xl max-h-96 overflow-y-auto border border-gray-200"
+                className="mt-3 rounded-2xl shadow-xl max-h-96 overflow-y-auto border"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(10px)',
+                  borderColor: 'rgba(255, 255, 255, 0.3)'
+                }}
               >
                 {searchResults.map((service) => (
                   <div
@@ -130,7 +135,7 @@ const HomePage = () => {
                       handleServiceClick(service);
                       setSearchQuery('');
                     }}
-                    className="p-4 cursor-pointer hover:bg-purple-50 transition-all border-b border-gray-100 last:border-b-0"
+                    className="p-4 cursor-pointer hover:bg-white hover:bg-opacity-80 transition-all border-b border-gray-100 last:border-b-0"
                   >
                     <div className="flex items-center justify-between">
                       <div className="text-left">
@@ -156,7 +161,14 @@ const HomePage = () => {
             )}
             
             {searchQuery.trim() && searchResults.length === 0 && (
-              <div className="mt-3 p-4 bg-white rounded-2xl text-center border border-gray-200">
+              <div 
+                className="mt-3 p-4 rounded-2xl text-center border"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(10px)',
+                  borderColor: 'rgba(255, 255, 255, 0.3)'
+                }}
+              >
                 <p className="text-gray-500">No services found. Try different keywords.</p>
               </div>
             )}
