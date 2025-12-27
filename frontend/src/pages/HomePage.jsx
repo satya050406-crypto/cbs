@@ -71,7 +71,7 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
         
         <div className="container mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)' }}>
             <Sparkles size={18} className="text-purple-600" />
             <span className="text-sm font-semibold text-purple-700">
               Trusted by 1000+ Businesses
@@ -81,20 +81,18 @@ const HomePage = () => {
           <h1 
             className="text-5xl md:text-7xl font-black mb-6 leading-tight"
             style={{ 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
+              color: '#ffffff',
+              textShadow: '0 2px 20px rgba(0,0,0,0.15)'
             }}
           >
             Your Financial Success
             <br />
             Starts Here
           </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-600">
+          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.95)', textShadow: '0 1px 10px rgba(0,0,0,0.1)' }}>
             Explore our comprehensive portfolio of financial, taxation, and business services.
             <br />
-            <span className="font-semibold text-gray-800">Transparent pricing, expert guidance, hassle-free solutions.</span>
+            <span className="font-semibold" style={{ color: '#ffffff' }}>Transparent pricing, expert guidance, hassle-free solutions.</span>
           </p>
 
           {/* Search Bar - Canva Style */}
@@ -109,9 +107,13 @@ const HomePage = () => {
                 placeholder="Search for services (e.g., GST Registration, Tax Planning...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-14 pr-4 py-6 text-base bg-white border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500 shadow-sm"
+                className="pl-14 pr-4 py-6 text-base border-2 focus:ring-purple-500"
                 style={{
-                  borderRadius: '16px'
+                  borderRadius: '16px',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
                 }}
               />
             </div>
