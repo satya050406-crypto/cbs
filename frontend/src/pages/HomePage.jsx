@@ -221,8 +221,13 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Services Grid Section */}
-      <section className="py-16 px-6 bg-gray-50">
+      {/* Services Grid Section - Gradient White Background */}
+      <section 
+        className="py-16 px-6 relative"
+        style={{
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.98) 100%)'
+        }}
+      >
         <div className="container mx-auto">
           {!selectedCategory ? (
             <>
