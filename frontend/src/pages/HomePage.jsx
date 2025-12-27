@@ -71,9 +71,9 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-slate-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000" />
         
         <div className="container mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)' }}>
-            <Sparkles size={18} className="text-purple-600" />
-            <span className="text-sm font-semibold text-purple-700">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+            <Sparkles size={18} className="text-cyan-400" />
+            <span className="text-sm font-semibold text-white">
               Trusted by 1000+ Businesses
             </span>
           </div>
