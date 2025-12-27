@@ -47,11 +47,11 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      {/* Hero Section - Canva Style with Fluid Glass Background */}
+      {/* Hero Section - Professional Masculine Gradient */}
       <section 
         className="py-20 px-6 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%)',
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #1e40af 50%, #0891b2 75%, #06b6d4 100%)',
           backgroundSize: '400% 400%',
           animation: 'gradient 15s ease infinite'
         }}
@@ -60,15 +60,15 @@ const HomePage = () => {
         <div 
           className="absolute inset-0 backdrop-blur-3xl"
           style={{
-            background: 'rgba(255, 255, 255, 0.3)',
+            background: 'rgba(15, 23, 42, 0.2)',
             backdropFilter: 'blur(100px)'
           }}
         />
         
-        {/* Floating blobs for fluid effect */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+        {/* Floating elements for depth */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-700 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-slate-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000" />
         
         <div className="container mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)' }}>
