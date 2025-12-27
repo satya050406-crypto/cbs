@@ -44,219 +44,158 @@ const HomePage = () => {
     : [];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section - Professional Masculine Gradient */}
-      <section 
-        className="py-20 px-6 relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #1e40af 50%, #0891b2 75%, #06b6d4 100%)',
-          backgroundSize: '400% 400%',
-          animation: 'gradient 15s ease infinite'
-        }}
-      >
-        {/* Glassmorphism overlay */}
-        <div 
-          className="absolute inset-0 backdrop-blur-3xl"
-          style={{
-            background: 'rgba(15, 23, 42, 0.2)',
-            backdropFilter: 'blur(100px)'
-          }}
-        />
-        
-        {/* Floating elements for depth */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-700 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-slate-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000" />
-        
-        <div className="container mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
-            <Sparkles size={18} className="text-cyan-400" />
-            <span className="text-sm font-semibold text-white">
-              Trusted by 1000+ Businesses
-            </span>
-          </div>
-          
-          <h1 
-            className="text-5xl md:text-7xl font-black mb-6 leading-tight"
-            style={{ 
-              color: '#ffffff',
-              textShadow: '0 2px 20px rgba(0,0,0,0.15)'
-            }}
-          >
-            Your Financial Success
-            <br />
-            Starts Here
-          </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.95)', textShadow: '0 1px 10px rgba(0,0,0,0.1)' }}>
-            Explore our comprehensive portfolio of financial, taxation, and business services.
-            <br />
-            <span className="font-semibold" style={{ color: '#ffffff' }}>Transparent pricing, expert guidance, hassle-free solutions.</span>
-          </p>
-
-          {/* Search Bar - Canva Style */}
-          <div className="max-w-2xl mx-auto mb-6">
-            <div className="relative">
-              <Search 
-                size={20} 
-                className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400"
-              />
-              <Input
-                type="text"
-                placeholder="Search for services (e.g., GST Registration, Tax Planning...)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-14 pr-4 py-6 text-base border-2 focus:ring-purple-500"
-                style={{
-                  borderRadius: '16px',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  backdropFilter: 'blur(10px)',
-                  border: '2px solid rgba(255, 255, 255, 0.3)',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
-                }}
-              />
+      {/* Hero Section - Minimalistic Canva Style */}
+      <section className="py-24 px-6 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 bg-purple-50 border border-purple-100">
+              <Sparkles size={16} className="text-purple-500" />
+              <span className="text-sm font-medium text-purple-700">
+                Trusted by 1000+ Businesses
+              </span>
             </div>
             
-            {/* Search Results Dropdown */}
-            {searchQuery.trim() && searchResults.length > 0 && (
-              <div 
-                className="mt-3 rounded-2xl shadow-xl max-h-96 overflow-y-auto border"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  backdropFilter: 'blur(10px)',
-                  borderColor: 'rgba(255, 255, 255, 0.3)'
-                }}
-              >
-                {searchResults.map((service) => (
-                  <div
-                    key={service.id}
-                    onClick={() => {
-                      handleServiceClick(service);
-                      setSearchQuery('');
-                    }}
-                    className="p-4 cursor-pointer hover:bg-white hover:bg-opacity-80 transition-all border-b border-gray-100 last:border-b-0"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="text-left">
-                        <h4 className="font-semibold text-gray-900">
-                          {service.title}
-                        </h4>
-                        <p className="text-sm text-gray-500">
-                          {service.category}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-semibold text-green-600">
-                          {service.estimatedCost}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {service.estimatedTime}
-                        </p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-slate-900 tracking-tight">
+              Your Financial Success
+              <br />
+              <span className="text-purple-600">Starts Here</span>
+            </h1>
+            
+            <p className="text-lg text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+              Explore our comprehensive portfolio of financial, taxation, and business services.
+              Transparent pricing, expert guidance, hassle-free solutions.
+            </p>
+
+            {/* Search Bar - Clean Minimalistic Style */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="relative">
+                <Search 
+                  size={20} 
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for services..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-4 py-5 text-base bg-white border border-slate-200 focus:border-purple-400 focus:ring-purple-400 shadow-sm"
+                  style={{
+                    borderRadius: '12px'
+                  }}
+                />
+              </div>
+              
+              {/* Search Results Dropdown */}
+              {searchQuery.trim() && searchResults.length > 0 && (
+                <div className="mt-3 rounded-xl shadow-lg max-h-96 overflow-y-auto bg-white border border-slate-200">
+                  {searchResults.map((service) => (
+                    <div
+                      key={service.id}
+                      onClick={() => {
+                        handleServiceClick(service);
+                        setSearchQuery('');
+                      }}
+                      className="p-4 cursor-pointer hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="text-left">
+                          <h4 className="font-semibold text-slate-900">
+                            {service.title}
+                          </h4>
+                          <p className="text-sm text-slate-500">
+                            {service.category}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-semibold text-purple-600">
+                            {service.estimatedCost}
+                          </p>
+                          <p className="text-xs text-slate-400">
+                            {service.estimatedTime}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-            
-            {searchQuery.trim() && searchResults.length === 0 && (
-              <div 
-                className="mt-3 p-4 rounded-2xl text-center border"
+                  ))}
+                </div>
+              )}
+              
+              {searchQuery.trim() && searchResults.length === 0 && (
+                <div className="mt-3 p-4 rounded-xl text-center bg-white border border-slate-200 shadow-sm">
+                  <p className="text-slate-500">No services found. Try different keywords.</p>
+                </div>
+              )}
+            </div>
+
+            {/* Filter Buttons - Clean Minimalistic Style */}
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <Button
+                onClick={() => setFilterType('all')}
+                variant={filterType === 'all' ? 'default' : 'outline'}
+                className={`font-medium transition-all ${
+                  filterType === 'all' 
+                    ? 'bg-purple-600 text-white hover:bg-purple-700 border-purple-600' 
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
+                }`}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  backdropFilter: 'blur(10px)',
-                  borderColor: 'rgba(255, 255, 255, 0.3)'
+                  borderRadius: '10px',
+                  padding: '0.625rem 1.25rem'
                 }}
               >
-                <p className="text-gray-500">No services found. Try different keywords.</p>
-              </div>
-            )}
-          </div>
-
-          {/* Filter Buttons - Professional Style */}
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Button
-              onClick={() => setFilterType('all')}
-              className={`font-semibold transition-all ${
-                filterType === 'all' 
-                  ? 'text-white' 
-                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
-              }`}
-              style={{
-                background: filterType === 'all' 
-                  ? 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' 
-                  : 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: filterType === 'all' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              <Filter size={16} className="mr-2" />
-              All Services
-            </Button>
-            <Button
-              onClick={() => setFilterType('individual')}
-              className={`font-semibold transition-all ${
-                filterType === 'individual' 
-                  ? 'text-white' 
-                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
-              }`}
-              style={{
-                background: filterType === 'individual' 
-                  ? 'linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)' 
-                  : 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: filterType === 'individual' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              Individual Services
-            </Button>
-            <Button
-              onClick={() => setFilterType('business')}
-              className={`font-semibold transition-all ${
-                filterType === 'business' 
-                  ? 'text-white' 
-                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
-              }`}
-              style={{
-                background: filterType === 'business' 
-                  ? 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)' 
-                  : 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: filterType === 'business' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              Business Services
-            </Button>
+                <Filter size={16} className="mr-2" />
+                All Services
+              </Button>
+              <Button
+                onClick={() => setFilterType('individual')}
+                variant={filterType === 'individual' ? 'default' : 'outline'}
+                className={`font-medium transition-all ${
+                  filterType === 'individual' 
+                    ? 'bg-purple-600 text-white hover:bg-purple-700 border-purple-600' 
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
+                }`}
+                style={{
+                  borderRadius: '10px',
+                  padding: '0.625rem 1.25rem'
+                }}
+              >
+                Individual Services
+              </Button>
+              <Button
+                onClick={() => setFilterType('business')}
+                variant={filterType === 'business' ? 'default' : 'outline'}
+                className={`font-medium transition-all ${
+                  filterType === 'business' 
+                    ? 'bg-purple-600 text-white hover:bg-purple-700 border-purple-600' 
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
+                }`}
+                style={{
+                  borderRadius: '10px',
+                  padding: '0.625rem 1.25rem'
+                }}
+              >
+                Business Services
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid Section - Gradient White Background */}
-      <section 
-        className="py-16 px-6 relative"
-        style={{
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.98) 100%)'
-        }}
-      >
-        <div className="container mx-auto">
+      {/* Services Grid Section - Clean Minimalistic */}
+      <section className="py-20 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
           {!selectedCategory ? (
             <>
-              <h2 className="text-4xl font-bold mb-2 text-center text-gray-900">
-                Browse by Category
-              </h2>
-              <p className="text-center text-gray-600 mb-12">
-                Select a category to explore our services
-              </p>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold mb-3 text-slate-900 tracking-tight">
+                  Browse by Category
+                </h2>
+                <p className="text-lg text-slate-600">
+                  Select a category to explore our services
+                </p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredCategories.map((category) => (
                   <ServiceCard
@@ -269,20 +208,21 @@ const HomePage = () => {
             </>
           ) : (
             <>
-              <div className="mb-8">
+              <div className="mb-12">
                 <Button
                   onClick={handleBackToCategories}
-                  className="mb-4 bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200 shadow-sm"
+                  variant="outline"
+                  className="mb-6 bg-white text-slate-700 hover:bg-slate-50 border-slate-200"
                   style={{
-                    borderRadius: '12px'
+                    borderRadius: '10px'
                   }}
                 >
                   ← Back to Categories
                 </Button>
-                <h2 className="text-4xl font-bold mb-2 text-gray-900">
+                <h2 className="text-4xl font-bold mb-2 text-slate-900 tracking-tight">
                   {selectedCategory.name}
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-slate-600">
                   {selectedCategory.services.length} services available
                 </p>
               </div>
@@ -301,26 +241,22 @@ const HomePage = () => {
                     <div
                       key={service.id}
                       onClick={() => handleServiceClick(fullService)}
-                      className="cursor-pointer p-6 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl bg-white"
+                      className="cursor-pointer p-6 rounded-xl transition-all hover:shadow-lg bg-white border border-slate-200 hover:border-purple-200"
                       style={{
-                        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)'
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
                       }}
                     >
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">
+                      <h3 className="text-xl font-semibold mb-3 text-slate-900">
                         {service.title}
                       </h3>
-                      <p className="text-sm mb-4 text-gray-600">
+                      <p className="text-sm mb-4 text-slate-600 leading-relaxed">
                         {service.description}
                       </p>
                       <div className="flex gap-2 flex-wrap">
-                        <span 
-                          className="text-xs px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 font-medium border border-blue-200"
-                        >
+                        <span className="text-xs px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 font-medium">
                           {service.estimatedTime}
                         </span>
-                        <span 
-                          className="text-xs px-3 py-1.5 rounded-full bg-green-50 text-green-700 font-semibold border border-green-200"
-                        >
+                        <span className="text-xs px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 font-medium">
                           {service.estimatedCost}
                         </span>
                       </div>

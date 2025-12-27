@@ -5,62 +5,58 @@ import * as Icons from 'lucide-react';
 const ServiceCard = ({ category, onClick }) => {
   const IconComponent = Icons[category.icon] || Icons.Package;
   
-  // Canva-style gradient backgrounds
-  const gradients = {
-    'personal-finance': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'gst-taxation': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'business-setup': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'audit-documentation': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'accounting-consulting': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'utilities': 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+  // Minimalistic soft color palette
+  const colorSchemes = {
+    'personal-finance': { bg: 'bg-purple-50', icon: 'bg-purple-500', text: 'text-purple-700' },
+    'gst-taxation': { bg: 'bg-pink-50', icon: 'bg-pink-500', text: 'text-pink-700' },
+    'business-setup': { bg: 'bg-blue-50', icon: 'bg-blue-500', text: 'text-blue-700' },
+    'audit-documentation': { bg: 'bg-emerald-50', icon: 'bg-emerald-500', text: 'text-emerald-700' },
+    'accounting-consulting': { bg: 'bg-amber-50', icon: 'bg-amber-500', text: 'text-amber-700' },
+    'utilities': { bg: 'bg-cyan-50', icon: 'bg-cyan-500', text: 'text-cyan-700' }
   };
+  
+  const scheme = colorSchemes[category.id] || { bg: 'bg-slate-50', icon: 'bg-slate-500', text: 'text-slate-700' };
   
   return (
     <Card 
-      className="service-card group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white overflow-hidden"
+      className="group cursor-pointer transition-all duration-200 hover:shadow-md bg-white border border-slate-200 hover:border-purple-200"
       style={{
-        borderRadius: '20px',
-        border: 'none',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)'
+        borderRadius: '16px',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
       }}
       onClick={onClick}
     >
-      <div 
-        className="h-2"
-        style={{ background: gradients[category.id] || category.color }}
-      />
       <div className="p-6">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-start gap-4 mb-4">
           <div 
-            className="w-14 h-14 rounded-2xl flex items-center justify-center"
-            style={{ 
-              background: gradients[category.id] || category.color
-            }}
+            className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${scheme.icon}`}
           >
             <IconComponent 
-              size={28} 
+              size={24} 
               className="text-white"
             />
           </div>
-          <h3 className="text-xl font-bold text-gray-900">
-            {category.name}
-          </h3>
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">
+              {category.name}
+            </h3>
+            <p className="text-sm text-slate-500">
+              {category.services.length} Services Available
+            </p>
+          </div>
         </div>
-        <p className="text-sm text-gray-600 mb-4">
-          {category.services.length} Services Available
-        </p>
         <div className="flex flex-wrap gap-2">
           {category.services.slice(0, 3).map((service, idx) => (
             <span 
               key={idx}
-              className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 font-medium"
+              className="text-xs px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium"
             >
               {service.title.split(' ').slice(0, 2).join(' ')}
             </span>
           ))}
           {category.services.length > 3 && (
             <span 
-              className="text-xs px-3 py-1.5 rounded-full bg-purple-100 text-purple-700 font-medium"
+              className="text-xs px-3 py-1.5 rounded-full bg-purple-50 text-purple-600 font-medium"
             >
               +{category.services.length - 3} more
             </span>

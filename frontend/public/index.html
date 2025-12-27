@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
+        <meta name="description" content="CBS - Your Trusted Financial Partner for all financial, taxation, and business services" />
         <!--
         manifest.json provides metadata used when your web app is installed on a
         user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -18,10 +18,9 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
-        <title>Emergent | Fullstack App</title>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <title>CBS | Financial Services</title>
         <!--
-        These two scripts have been added for the Visual Edits, please do not edit or remove them
+        Emergent scripts removed
         -->
         <script>
             // Only load visual edit scripts when inside an iframe
@@ -47,6 +46,57 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <script>
+            // Remove emergent badge if it exists
+            (function() {
+                function removeBadge() {
+                    // Remove by ID
+                    var badge = document.getElementById('emergent-badge');
+                    if (badge) {
+                        badge.remove();
+                        return;
+                    }
+                    // Remove any element with emergent in id or class
+                    var allElements = document.querySelectorAll('[id*="emergent"], [class*="emergent"], a[href*="emergent"]');
+                    allElements.forEach(function(el) {
+                        if (el.id && el.id.includes('emergent')) {
+                            el.remove();
+                        } else if (el.href && el.href.includes('emergent.sh') && el.href.includes('badge')) {
+                            el.remove();
+                        } else if (el.textContent && el.textContent.includes('Made with Emergent')) {
+                            el.remove();
+                        }
+                    });
+                    // Check for fixed positioned elements in bottom-right that might be the badge
+                    var fixedElements = document.querySelectorAll('[style*="position: fixed"][style*="bottom"], [style*="position:fixed"][style*="bottom"]');
+                    fixedElements.forEach(function(el) {
+                        if (el.textContent && (el.textContent.includes('Emergent') || el.textContent.includes('emergent'))) {
+                            el.remove();
+                        }
+                    });
+                }
+                // Run immediately
+                removeBadge();
+                // Run after DOM loads
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', removeBadge);
+                }
+                // Run after page loads (in case script adds it later)
+                window.addEventListener('load', removeBadge);
+                // Periodically check and remove (in case it's added dynamically)
+                setInterval(removeBadge, 500);
+                // Use MutationObserver to catch when badge is added
+                if (typeof MutationObserver !== 'undefined') {
+                    var observer = new MutationObserver(function(mutations) {
+                        removeBadge();
+                    });
+                    observer.observe(document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+                }
+            })();
+        </script>
         <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -57,53 +107,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-        <a
-            id="emergent-badge"
-            target="_blank"
-            href="https://app.emergent.sh/?utm_source=emergent-badge"
-            style="
-                display: flex !important;
-                align-items: center !important;
-                position: fixed !important;
-                bottom: 20px;
-                right: 20px;
-                text-decoration: none;
-                padding: 6px 10px;
-                font-family: -apple-system, BlinkMacSystemFont,
-                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
-                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
-                    sans-serif !important;
-                font-size: 12px !important;
-                z-index: 9999 !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-                border-radius: 8px !important;
-                background-color: #ffffff !important;
-                border: 1px solid rgba(255, 255, 255, 0.25) !important;
-            "
-        >
-            <div
-                style="display: flex; flex-direction: row; align-items: center"
-            >
-                <img
-                    style="width: 20px; height: 20px; margin-right: 8px"
-                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
-                />
-                <p
-                    style="
-                        color: #000000;
-                        font-family: -apple-system, BlinkMacSystemFont,
-                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
-                            Cantarell, &quot;Open Sans&quot;,
-                            &quot;Helvetica Neue&quot;, sans-serif !important;
-                        font-size: 12px !important;
-                        align-items: center;
-                        margin-bottom: 0;
-                    "
-                >
-                    Made with Emergent
-                </p>
-            </div>
-        </a>
         <script>
             !(function (t, e) {
                 var o, n, p, r;

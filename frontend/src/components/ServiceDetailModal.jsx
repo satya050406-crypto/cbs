@@ -3,7 +3,7 @@ import { Dialog, DialogContent } from './ui/dialog';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
-import { X, Clock, IndianRupee, CheckCircle2, Upload, Phone, User, MessageSquare } from 'lucide-react';
+import { X, Clock, IndianRupee, CheckCircle2, Upload } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
 const ServiceDetailModal = ({ service, isOpen, onClose }) => {
@@ -44,90 +44,85 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
 
   if (!service) return null;
 
-  const gradients = {
-    'personal-finance': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'gst-taxation': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'business-setup': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'audit-documentation': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'accounting-consulting': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'utilities': 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+  const colorSchemes = {
+    'personal-finance': { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+    'gst-taxation': { bg: 'bg-pink-50', text: 'text-pink-700', border: 'border-pink-200' },
+    'business-setup': { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+    'audit-documentation': { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+    'accounting-consulting': { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+    'utilities': { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' }
   };
+
+  const scheme = colorSchemes[service.categoryId] || { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200' };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] p-0 overflow-hidden bg-white" style={{ border: 'none', borderRadius: '24px' }}>
+      <DialogContent className="max-w-6xl max-h-[90vh] p-0 overflow-hidden bg-white" style={{ border: 'none', borderRadius: '20px' }}>
         <div className="flex flex-col md:flex-row h-full">
           {/* Left Column - Service Details */}
-          <div className="w-full md:w-1/2 p-8 overflow-y-auto bg-gray-50">
+          <div className="w-full md:w-1/2 p-8 overflow-y-auto bg-slate-50">
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <span 
-                  className="text-xs px-4 py-2 rounded-full font-semibold text-white"
-                  style={{
-                    background: gradients[service.categoryId] || service.categoryColor
-                  }}
+                  className={`text-xs px-3 py-1.5 rounded-lg font-medium ${scheme.bg} ${scheme.text} ${scheme.border} border`}
                 >
                   {service.category}
                 </span>
                 <button 
                   onClick={onClose}
-                  className="md:hidden p-2 rounded-full hover:bg-gray-200 transition-colors"
+                  className="md:hidden p-2 rounded-lg hover:bg-slate-200 transition-colors"
                 >
-                  <X size={20} className="text-gray-600" />
+                  <X size={20} className="text-slate-600" />
                 </button>
               </div>
               
-              <h2 className="text-3xl font-bold mb-4 text-gray-900">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 tracking-tight">
                 {service.title}
               </h2>
               
-              <p className="text-base leading-relaxed text-gray-700">
+              <p className="text-base leading-relaxed text-slate-600">
                 {service.description}
               </p>
             </div>
 
-            {/* Transparency Chips */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <div 
-                className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-blue-50 border border-blue-200"
-              >
-                <Clock size={20} className="text-blue-600" />
-                <span className="font-semibold text-blue-700">
+            {/* Info Chips */}
+            <div className="flex flex-wrap gap-3 mb-8">
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-200">
+                <Clock size={18} className="text-slate-500" />
+                <span className="font-medium text-slate-700">
                   {service.estimatedTime}
                 </span>
               </div>
               
-              <div 
-                className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-green-50 border border-green-200"
-              >
-                <IndianRupee size={20} className="text-green-600" />
-                <span className="font-semibold text-green-700">
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-200">
+                <IndianRupee size={18} className="text-slate-500" />
+                <span className="font-medium text-slate-700">
                   {service.estimatedCost}
                 </span>
               </div>
             </div>
 
             {/* What's Included */}
-            <div className="mb-6">
-              <h3 className="text-lg font-bold mb-4 text-gray-900">
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-slate-900">
                 What's Included
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {service.included.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-3 rounded-xl">
-                    <CheckCircle2 size={20} className="mt-0.5 flex-shrink-0 text-green-600" />
-                    <span className="text-gray-700">{item}</span>
+                  <div key={idx} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-slate-100">
+                    <CheckCircle2 size={18} className="mt-0.5 flex-shrink-0 text-emerald-500" />
+                    <span className="text-sm text-slate-600">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Documents Required */}
-            <div className="p-4 rounded-xl bg-purple-50 border border-purple-200">
-              <h4 className="text-sm font-semibold mb-2 text-purple-900">
+            <div className="p-4 rounded-lg bg-purple-50 border border-purple-100">
+              <h4 className="text-sm font-semibold mb-2 text-slate-900">
                 Documents Required:
               </h4>
-              <p className="text-sm text-purple-700">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 {service.documentRequired}
               </p>
             </div>
@@ -137,25 +132,24 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
           <div className="w-full md:w-1/2 p-8 overflow-y-auto bg-white">
             <div className="sticky top-0">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                   Get Started
                 </h3>
                 <button 
                   onClick={onClose}
-                  className="hidden md:block p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  className="hidden md:block p-2 rounded-lg hover:bg-slate-100 transition-colors"
                 >
-                  <X size={20} className="text-gray-600" />
+                  <X size={20} className="text-slate-600" />
                 </button>
               </div>
               
-              <p className="mb-6 text-gray-600">
+              <p className="mb-8 text-slate-600 leading-relaxed">
                 Fill in your details and we'll contact you within 24 hours to discuss your requirements.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    <User size={16} className="inline mr-2" />
+                  <label className="block text-sm font-medium mb-2 text-slate-700">
                     Full Name *
                   </label>
                   <Input
@@ -165,17 +159,16 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
                     onChange={handleInputChange}
                     placeholder="Enter your full name"
                     required
-                    className="w-full bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    className="w-full bg-white border-slate-200 focus:border-purple-400 focus:ring-purple-400"
                     style={{
-                      borderRadius: '12px',
+                      borderRadius: '10px',
                       padding: '12px 16px'
                     }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    <Phone size={16} className="inline mr-2" />
+                  <label className="block text-sm font-medium mb-2 text-slate-700">
                     Phone Number *
                   </label>
                   <Input
@@ -185,17 +178,16 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
                     onChange={handleInputChange}
                     placeholder="Enter your phone number"
                     required
-                    className="w-full bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    className="w-full bg-white border-slate-200 focus:border-purple-400 focus:ring-purple-400"
                     style={{
-                      borderRadius: '12px',
+                      borderRadius: '10px',
                       padding: '12px 16px'
                     }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    <MessageSquare size={16} className="inline mr-2" />
+                  <label className="block text-sm font-medium mb-2 text-slate-700">
                     Your Message (Optional)
                   </label>
                   <Textarea
@@ -204,9 +196,9 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
                     onChange={handleInputChange}
                     placeholder="Tell us about your requirements..."
                     rows={4}
-                    className="w-full bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    className="w-full bg-white border-slate-200 focus:border-purple-400 focus:ring-purple-400"
                     style={{
-                      borderRadius: '12px',
+                      borderRadius: '10px',
                       padding: '12px 16px',
                       resize: 'vertical'
                     }}
@@ -214,19 +206,18 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    <Upload size={16} className="inline mr-2" />
+                  <label className="block text-sm font-medium mb-2 text-slate-700">
                     Upload Document (Optional)
                   </label>
                   <div 
-                    className="border-2 border-dashed border-purple-200 rounded-2xl p-6 text-center cursor-pointer hover:border-purple-400 hover:bg-purple-50 transition-all"
+                    className="border-2 border-dashed border-slate-200 rounded-lg p-6 text-center cursor-pointer hover:border-purple-300 hover:bg-purple-50 transition-all"
                     onClick={() => document.getElementById('file-upload').click()}
                   >
-                    <Upload size={32} className="mx-auto mb-2 text-purple-400" />
-                    <p className="text-sm text-gray-700 font-medium">
+                    <Upload size={28} className="mx-auto mb-2 text-slate-400" />
+                    <p className="text-sm text-slate-700 font-medium">
                       {formData.document ? formData.document.name : 'Click to upload or drag and drop'}
                     </p>
-                    <p className="text-xs mt-1 text-gray-500">
+                    <p className="text-xs mt-1 text-slate-500">
                       PDF, DOC, JPG (Max 10MB)
                     </p>
                     <input
@@ -241,16 +232,15 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
 
                 <Button
                   type="submit"
-                  className="w-full font-semibold text-base py-6 text-white shadow-lg hover:shadow-xl transition-all"
+                  className="w-full font-medium text-base py-5 text-white bg-purple-600 hover:bg-purple-700 transition-colors"
                   style={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: '12px'
+                    borderRadius: '10px'
                   }}
                 >
                   Register Query
                 </Button>
 
-                <p className="text-xs text-center text-gray-500">
+                <p className="text-xs text-center text-slate-500">
                   By submitting, you agree to receive communication from us regarding your query.
                 </p>
               </form>

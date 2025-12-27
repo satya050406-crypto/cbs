@@ -4,49 +4,48 @@ import { Phone, Mail, Menu } from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-xl text-white"
-              style={{ background: 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' }}
+              className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg text-white"
+              style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)' }}
             >
               CBS
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">
+              <h1 className="text-lg font-semibold text-slate-900">
                 CBS
               </h1>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-500">
                 Your Trusted Financial Partner
               </p>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             <a 
-              href="tel:+919876543210" 
-              className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
+              href="tel:+919354419950" 
+              className="flex items-center gap-2 text-sm text-slate-600 hover:text-purple-600 transition-colors"
             >
-              <Phone size={16} className="text-blue-600" />
-              +91 98765 43210
+              <Phone size={16} className="text-purple-500" />
+              +91 93544 19950
             </a>
             <a 
               href="mailto:info@cbs.com" 
-              className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-2 text-sm text-slate-600 hover:text-purple-600 transition-colors"
             >
-              <Mail size={16} className="text-blue-600" />
+              <Mail size={16} className="text-purple-500" />
               info@cbs.com
             </a>
           </div>
 
           <Button
-            className="font-semibold text-white shadow-md hover:shadow-lg transition-all"
+            className="font-medium text-white bg-purple-600 hover:bg-purple-700 transition-colors"
             style={{
-              background: 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)',
-              borderRadius: '12px',
-              padding: '0.75rem 1.5rem'
+              borderRadius: '10px',
+              padding: '0.625rem 1.25rem'
             }}
           >
             Contact Us
