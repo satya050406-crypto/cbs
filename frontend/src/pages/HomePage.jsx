@@ -178,18 +178,20 @@ const HomePage = () => {
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <Button
               onClick={() => setFilterType('all')}
-              className={`font-semibold shadow-sm transition-all ${
+              className={`font-semibold transition-all ${
                 filterType === 'all' 
                   ? 'text-white' 
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
               }`}
               style={{
                 background: filterType === 'all' 
                   ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                  : 'white',
-                border: filterType === 'all' ? 'none' : '2px solid #e5e7eb',
+                  : 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(10px)',
+                border: filterType === 'all' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
                 borderRadius: '12px',
-                padding: '0.75rem 1.5rem'
+                padding: '0.75rem 1.5rem',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
             >
               <Filter size={16} className="mr-2" />
@@ -197,36 +199,40 @@ const HomePage = () => {
             </Button>
             <Button
               onClick={() => setFilterType('individual')}
-              className={`font-semibold shadow-sm transition-all ${
+              className={`font-semibold transition-all ${
                 filterType === 'individual' 
                   ? 'text-white' 
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
               }`}
               style={{
                 background: filterType === 'individual' 
                   ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' 
-                  : 'white',
-                border: filterType === 'individual' ? 'none' : '2px solid #e5e7eb',
+                  : 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(10px)',
+                border: filterType === 'individual' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
                 borderRadius: '12px',
-                padding: '0.75rem 1.5rem'
+                padding: '0.75rem 1.5rem',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
             >
               Individual Services
             </Button>
             <Button
               onClick={() => setFilterType('business')}
-              className={`font-semibold shadow-sm transition-all ${
+              className={`font-semibold transition-all ${
                 filterType === 'business' 
                   ? 'text-white' 
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
               }`}
               style={{
                 background: filterType === 'business' 
                   ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' 
-                  : 'white',
-                border: filterType === 'business' ? 'none' : '2px solid #e5e7eb',
+                  : 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(10px)',
+                border: filterType === 'business' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
                 borderRadius: '12px',
-                padding: '0.75rem 1.5rem'
+                padding: '0.75rem 1.5rem',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
             >
               Business Services
