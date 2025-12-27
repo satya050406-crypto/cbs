@@ -174,24 +174,24 @@ const HomePage = () => {
             )}
           </div>
 
-          {/* Filter Buttons - Canva Style */}
+          {/* Filter Buttons - Professional Style */}
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <Button
               onClick={() => setFilterType('all')}
               className={`font-semibold transition-all ${
                 filterType === 'all' 
                   ? 'text-white' 
-                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
+                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
               }`}
               style={{
                 background: filterType === 'all' 
-                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                  : 'rgba(255, 255, 255, 0.8)',
+                  ? 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' 
+                  : 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
-                border: filterType === 'all' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
+                border: filterType === 'all' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '12px',
                 padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
               }}
             >
               <Filter size={16} className="mr-2" />
@@ -202,17 +202,17 @@ const HomePage = () => {
               className={`font-semibold transition-all ${
                 filterType === 'individual' 
                   ? 'text-white' 
-                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
+                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
               }`}
               style={{
                 background: filterType === 'individual' 
-                  ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' 
-                  : 'rgba(255, 255, 255, 0.8)',
+                  ? 'linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)' 
+                  : 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
-                border: filterType === 'individual' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
+                border: filterType === 'individual' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '12px',
                 padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
               }}
             >
               Individual Services
@@ -222,17 +222,17 @@ const HomePage = () => {
               className={`font-semibold transition-all ${
                 filterType === 'business' 
                   ? 'text-white' 
-                  : 'text-gray-700 hover:bg-white hover:bg-opacity-90'
+                  : 'text-gray-200 hover:bg-white hover:bg-opacity-20'
               }`}
               style={{
                 background: filterType === 'business' 
-                  ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' 
-                  : 'rgba(255, 255, 255, 0.8)',
+                  ? 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)' 
+                  : 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
-                border: filterType === 'business' ? 'none' : '2px solid rgba(255, 255, 255, 0.5)',
+                border: filterType === 'business' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '12px',
                 padding: '0.75rem 1.5rem',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
               }}
             >
               Business Services
