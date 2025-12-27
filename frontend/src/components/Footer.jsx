@@ -11,28 +11,28 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <div 
                 className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white"
-                style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+                style={{ background: 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' }}
               >
-                CF
+                CBS
               </div>
               <h3 className="text-lg font-bold text-gray-900">
-                CA Financial
+                CBS
               </h3>
             </div>
             <p className="text-sm mb-4 text-gray-600">
               Your trusted partner for all financial, taxation, and business setup needs. Expert solutions with transparency and efficiency.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' }}>
                 <Facebook size={18} className="text-white" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #00c6fb 0%, #005bea 100%)' }}>
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)' }}>
                 <Twitter size={18} className="text-white" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #1e40af 0%, #0891b2 100%)' }}>
                 <Linkedin size={18} className="text-white" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}>
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)' }}>
                 <Instagram size={18} className="text-white" />
               </a>
             </div>
