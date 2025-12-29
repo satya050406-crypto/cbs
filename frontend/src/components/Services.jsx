@@ -1,36 +1,308 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import {
+    Wallet,
+    FileText,
+    Rocket,
+    ClipboardCheck,
+    LineChart,
+    ScrollText,
+    ArrowRight,
+    ArrowLeft,
+    X,
+    Upload,
+    CheckCircle2,
+    Phone,
+    User,
+    MessageSquare
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedService, setSelectedService] = useState(null);
+
+    const categories = [
+        {
+            category_name: "Personal Finance",
+            icon: Wallet,
+            description: "Plan your financial future with expert guidance on savings, investments, and retirement.",
+            services: [
+                { name: "Monthly Budget Planning", price: "₹2,500" },
+                { name: "Savings & Investment Guidance", price: "₹5,000" },
+                { name: "Tax Saving Planning", price: "₹3,000" },
+                { name: "Debt/Loan Management", price: "₹4,000" },
+                { name: "Emergency Fund Planning", price: "₹1,500" },
+                { name: "Retirement Planning", price: "₹7,500" },
+                { name: "Financial Goal Setting", price: "₹3,500" }
+            ]
+        },
+        {
+            category_name: "GST & Taxation",
+            icon: FileText,
+            description: "Complete GST and taxation solutions for individuals and businesses.",
+            services: [
+                { name: "GST Registration", price: "₹1,500" },
+                { name: "GST Return Filing (GSTR-1/3B)", price: "₹1,000/month" },
+                { name: "GST Amendments", price: "₹1,000" },
+                { name: "GST Audit", price: "₹15,000" },
+                { name: "GST Notice Reply", price: "On Request" },
+                { name: "E-Way Bill Support", price: "₹500/month" },
+                { name: "Income Tax Return (ITR) Filing", price: "₹1,500" },
+                { name: "Tax Planning", price: "₹5,000" },
+                { name: "TDS/TCS Compliance", price: "₹1,500/month" },
+                { name: "Tax Audit", price: "₹12,000" },
+                { name: "Capital Gain Calculation", price: "₹2,500" }
+            ]
+        },
+        {
+            category_name: "Business Setup",
+            icon: Rocket,
+            description: "Start your entrepreneurial journey with our end-to-end registration services.",
+            services: [
+                { name: "Private Limited Company Registration", price: "₹7,999" },
+                { name: "LLP Registration", price: "₹5,999" },
+                { name: "Partnership Firm Registration", price: "₹2,999" },
+                { name: "Sole Proprietorship Registration", price: "₹1,499" },
+                { name: "MSME/Udyam Registration", price: "₹999" },
+                { name: "Shop Act License", price: "₹1,999" },
+                { name: "Trust/NGO Registration", price: "₹12,000" }
+            ]
+        },
+        {
+            category_name: "Audit & Documentation",
+            icon: ClipboardCheck,
+            description: "Comprehensive audit and documentation services to ensure compliance.",
+            services: [
+                { name: "Statutory Audit", price: "On Request" },
+                { name: "Internal Audit", price: "On Request" },
+                { name: "NGO Audit (12A/80G)", price: "₹10,000" },
+                { name: "Business Loan Documentation", price: "₹5,000" },
+                { name: "Personal/Home Loan Files", price: "₹2,500" },
+                { name: "CMA Report Preparation", price: "₹3,500" },
+                { name: "Projected Balance Sheet", price: "₹2,500" }
+            ]
+        },
+        {
+            category_name: "Accounting & Consulting",
+            icon: LineChart,
+            description: "Day-to-day accounting and strategic consulting for your business growth.",
+            services: [
+                { name: "Daily Bookkeeping", price: "₹2,000/month" },
+                { name: "Profit & Loss Statement", price: "₹1,500" },
+                { name: "Balance Sheet", price: "₹1,500" },
+                { name: "Cash Flow Analysis", price: "₹2,500" },
+                { name: "Bank Reconciliation", price: "₹1,000" },
+                { name: "Startup Guidance", price: "₹5,000" },
+                { name: "Financial Health Check", price: "₹3,000" }
+            ]
+        },
+        {
+            category_name: "Utilities & Registrations",
+            icon: ScrollText,
+            description: "Essential utility services and registrations to keep you compliant.",
+            services: [
+                { name: "PAN/TAN Application", price: "₹499" },
+                { name: "Digital Signature Certificate (DSC)", price: "₹1,499" },
+                { name: "Trademark Registration", price: "₹6,500" },
+                { name: "Import Export Code (IEC)", price: "₹2,499" },
+                { name: "PF/ESI Registration", price: "₹3,000" },
+                { name: "ROC Annual Filing", price: "₹4,000" }
+            ]
+        }
+    ];
+
     return (
-        <section className="py-20 bg-gray-50 dark:bg-gray-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mb-12">
-                    <span className="text-corporate-primary text-sm font-bold uppercase tracking-widest mb-2 block">Services</span>
-                    <h2 className="font-display text-4xl font-bold text-gray-900 dark:text-white">Our Expertise</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-                    {[
-                        { title: "Taxation", desc: "Comprehensive direct and indirect tax advisory services tailored for compliance and efficiency." },
-                        { title: "Audit & Assurance", desc: "Providing clarity and confidence in financial reporting through rigorous audit processes." },
-                        { title: "Regulatory", desc: "Navigating complex regulatory environments to ensure seamless business operations." },
-                        { title: "M&A", desc: "Strategic advice on mergers, acquisitions, and restructuring for maximum value creation." },
-                        { title: "Risk Advisory", desc: "Identifying and mitigating business risks to protect assets and reputation." },
-                        { title: "Forensics", desc: "In-depth investigations and forensic accounting to uncover financial irregularities." },
-                        { title: "Cybersecurity", desc: "Protecting digital assets and sensitive data against evolving cyber threats." },
-                        { title: "IPO Services", desc: "Guiding companies through the complex process of initial public offerings." },
-                        { title: "Valuation", desc: "Accurate business and asset valuation services for informed decision making." }
-                    ].map((service, index) => (
-                        <div key={index} className="group p-8 bg-white dark:bg-gray-800 rounded-lg hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100">
-                            <div className="w-12 h-1 bg-corporate-primary/20 group-hover:bg-corporate-secondary mb-6 transition-colors duration-300"></div>
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-corporate-primary dark:group-hover:text-corporate-secondary transition-colors">{service.title}</h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 line-clamp-3 leading-relaxed">{service.desc}</p>
-                            <a href="#" className="text-xs font-bold text-gray-400 group-hover:text-corporate-primary dark:group-hover:text-corporate-secondary uppercase tracking-wider flex items-center transition-colors">
-                                View More <span className="material-icons text-[10px] ml-1 transform group-hover:translate-x-1 transition-transform">arrow_outward</span>
-                            </a>
+        <section className="py-24 bg-gray-50 dark:bg-neutral-950 relative overflow-hidden min-h-screen">
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-corporate-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-corporate-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <AnimatePresence mode="wait">
+                    {!selectedCategory ? (
+                        <motion.div
+                            key="categories"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <div className="text-center mb-16">
+                                <span className="text-corporate-primary text-sm font-bold uppercase tracking-widest mb-2 block">Our Expertise</span>
+                                <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                                    Browse by <span className="text-corporate-secondary">Category</span>
+                                </h2>
+                                <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg">
+                                    Select a category to explore our specialized services tailored to your needs.
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {categories.map((cat, index) => (
+                                    <div
+                                        key={index}
+                                        onClick={() => setSelectedCategory(cat)}
+                                        className="group bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-neutral-800 cursor-pointer relative overflow-hidden"
+                                    >
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-corporate-primary to-corporate-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                        <div className="p-4 bg-gray-50 dark:bg-neutral-800 rounded-xl text-corporate-primary w-fit mb-6 group-hover:bg-corporate-primary group-hover:text-white transition-colors duration-300">
+                                            <cat.icon size={32} strokeWidth={1.5} />
+                                        </div>
+
+                                        <h3 className="font-display text-xl font-bold text-gray-900 dark:text-white mb-3">
+                                            {cat.category_name}
+                                        </h3>
+                                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                                            {cat.description}
+                                        </p>
+
+                                        <div className="flex items-center text-sm font-bold text-corporate-primary group-hover:text-corporate-secondary transition-colors">
+                                            View Services <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="services"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <div className="mb-8 flex items-center justify-between">
+                                <button
+                                    onClick={() => setSelectedCategory(null)}
+                                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-corporate-primary dark:hover:text-white transition-colors font-medium"
+                                >
+                                    <ArrowLeft size={20} className="mr-2" /> Back to Categories
+                                </button>
+                            </div>
+
+                            <div className="text-center mb-12">
+                                <div className="inline-block p-3 bg-corporate-primary/10 rounded-full text-corporate-primary mb-4">
+                                    <selectedCategory.icon size={32} />
+                                </div>
+                                <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                                    {selectedCategory.category_name}
+                                </h2>
+                                <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                                    {selectedCategory.description}
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {selectedCategory.services.map((service, index) => (
+                                    <div
+                                        key={index}
+                                        onClick={() => setSelectedService(service)}
+                                        className="group bg-white dark:bg-neutral-900 p-6 rounded-xl border border-gray-100 dark:border-neutral-800 hover:border-corporate-primary dark:hover:border-corporate-primary shadow-sm hover:shadow-md transition-all cursor-pointer flex justify-between items-center"
+                                    >
+                                        <span className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-corporate-primary transition-colors">
+                                            {service.name}
+                                        </span>
+                                        <span className="p-2 bg-gray-50 dark:bg-neutral-800 rounded-full text-gray-400 group-hover:text-corporate-primary transition-colors">
+                                            <ArrowRight size={16} />
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Service Detail Modal */}
+                <AnimatePresence>
+                    {selectedService && (
+                        <div className="fixed inset-0 z-[6000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                className="bg-white dark:bg-neutral-900 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl overflow-hidden flex flex-col"
+                            >
+                                <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-800/50 sticky top-0 backdrop-blur-md">
+                                    <div>
+                                        <h3 className="text-xl font-display font-bold text-gray-900 dark:text-white">{selectedService.name}</h3>
+                                        <p className="text-corporarte-primary font-bold text-corporate-secondary mt-1">{selectedService.price}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setSelectedService(null)}
+                                        className="p-2 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-full transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+
+                                <div className="p-6 space-y-8">
+                                    {/* Get Started Form */}
+                                    <div>
+                                        <h4 className="flex items-center text-lg font-bold text-gray-900 dark:text-white mb-4">
+                                            <span className="w-8 h-8 rounded-full bg-corporate-primary/10 flex items-center justify-center text-corporate-primary mr-3 text-sm">1</span>
+                                            Get Started
+                                        </h4>
+                                        <p className="text-sm text-gray-500 mb-6 pl-11">Fill in your details and we'll contact you within 24 hours.</p>
+
+                                        <div className="space-y-4 pl-11">
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name *</label>
+                                                <div className="relative">
+                                                    <span className="absolute left-3 top-2.5 text-gray-400"><User size={18} /></span>
+                                                    <input type="text" placeholder="Enter your full name" className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number *</label>
+                                                <div className="relative">
+                                                    <span className="absolute left-3 top-2.5 text-gray-400"><Phone size={18} /></span>
+                                                    <input type="tel" placeholder="Enter your phone number" className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message (Optional)</label>
+                                                <div className="relative">
+                                                    <span className="absolute left-3 top-3 text-gray-400"><MessageSquare size={18} /></span>
+                                                    <textarea rows="3" placeholder="Tell us about your requirements..." className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all resize-none"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Upload Documents */}
+                                    <div>
+                                        <h4 className="flex items-center text-lg font-bold text-gray-900 dark:text-white mb-4">
+                                            <span className="w-8 h-8 rounded-full bg-corporate-primary/10 flex items-center justify-center text-corporate-primary mr-3 text-sm">2</span>
+                                            Upload Documents
+                                        </h4>
+                                        <div className="pl-11">
+                                            <div className="border-2 border-dashed border-gray-200 dark:border-neutral-700 rounded-lg p-8 text-center hover:border-corporate-primary transition-colors cursor-pointer bg-gray-50/50 dark:bg-neutral-800/50">
+                                                <div className="w-12 h-12 bg-white dark:bg-neutral-800 rounded-full shadow-sm flex items-center justify-center mx-auto mb-4 text-corporate-primary">
+                                                    <Upload size={24} />
+                                                </div>
+                                                <p className="text-gray-900 dark:text-white font-medium mb-1">Click to upload or drag and drop</p>
+                                                <p className="text-xs text-gray-500">PDF, DOC, JPG (Max 10MB)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 border-t border-gray-100 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-800/50 flex items-center justify-end gap-3 sticky bottom-0">
+                                    <button
+                                        onClick={() => setSelectedService(null)}
+                                        className="px-6 py-2.5 rounded-lg font-medium text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-neutral-700 transition-colors"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button className="px-6 py-2.5 rounded-lg font-bold bg-corporate-primary text-white hover:bg-corporate-primary/90 shadow-lg shadow-corporate-primary/25 transition-all">
+                                        Register Query
+                                    </button>
+                                </div>
+                            </motion.div>
                         </div>
-                    ))}
-                </div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
