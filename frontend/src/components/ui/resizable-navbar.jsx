@@ -43,7 +43,7 @@ export const NavBody = ({ children, className }) => {
     );
 };
 
-export const NavItems = ({ items, className }) => {
+export const NavItems = ({ items, className, activeIdx }) => {
     const [hoveredIdx, setHoveredIdx] = useState(null);
 
     return (
@@ -56,10 +56,15 @@ export const NavItems = ({ items, className }) => {
                     onMouseLeave={() => setHoveredIdx(null)}
                     className="relative px-4 py-2 text-sm font-medium transition-colors group"
                 >
-                    <span className="relative z-10 text-neutral-600 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+                    <span className={cn(
+                        "relative z-10 transition-colors",
+                        (activeIdx === idx || hoveredIdx === idx)
+                            ? "text-black dark:text-white"
+                            : "text-neutral-600 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white"
+                    )}>
                         {item.name}
                     </span>
-                    {hoveredIdx === idx && (
+                    {(hoveredIdx === idx || (hoveredIdx === null && activeIdx === idx)) && (
                         <motion.span
                             layoutId="hover-pill"
                             className="absolute inset-0 z-0 bg-neutral-300 dark:bg-neutral-700 rounded-full"

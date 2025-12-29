@@ -9,6 +9,7 @@ import Services from '../components/Services';
 import QuoteSection from '../components/QuoteSection';
 import Insights from '../components/Insights';
 import Team from '../components/Team';
+import Careers from '../components/Careers';
 import WhatsAppButton from '../components/WhatsAppButton';
 
 const HomePage = () => {
@@ -16,13 +17,28 @@ const HomePage = () => {
     <div className="min-h-screen bg-white text-gray-900 font-sans">
       <Header />
       <main>
-        <Hero />
-        <Stats />
-        <AboutUs />
-        <Services />
-        <QuoteSection />
-        <Insights />
-        <Team />
+        <section id="home">
+          <Hero />
+          <Stats />
+        </section>
+        <section id="about">
+          <AboutUs />
+        </section>
+        <section id="expertise">
+          <Services />
+        </section>
+        <section>
+          <QuoteSection />
+        </section>
+        <section id="insights">
+          <Insights />
+        </section>
+        <section id="global-desk">
+          <Team />
+        </section>
+        <section id="careers">
+          <Careers />
+        </section>
       </main>
       <Footer />
       <WhatsAppButton />
@@ -33,3 +49,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

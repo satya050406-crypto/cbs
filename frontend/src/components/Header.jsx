@@ -13,14 +13,45 @@ import {
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(-1);
 
   const navItems = [
-    { name: "About Us", link: "#" },
-    { name: "Expertise", link: "#" },
-    { name: "Insights", link: "#" },
-    { name: "Global Desk", link: "#" },
-    { name: "Careers", link: "#" },
+    { name: "About Us", link: "#about" },
+    { name: "Expertise", link: "#expertise" },
+    { name: "Insights", link: "#insights" },
+    { name: "Global Desk", link: "#global-desk" },
+    { name: "Careers", link: "#careers" },
   ];
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Offset for navbar height/padding
+
+      // Find the current active section
+      for (let i = 0; i < navItems.length; i++) {
+        const item = navItems[i];
+        const sectionId = item.link.substring(1);
+        const element = document.getElementById(sectionId);
+
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveIdx(i);
+            return;
+          }
+        }
+      }
+
+      // If we are at the top (Home), no specific nav item is active
+      setActiveIdx(-1);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative w-full">
@@ -38,7 +69,7 @@ const Header = () => {
             </a>
           </div>
 
-          <NavItems items={navItems} />
+          <NavItems items={navItems} activeIdx={activeIdx} />
 
           <div className="hidden md:flex items-center gap-4">
             <NavbarButton variant="primary" className="bg-corporate-primary hover:bg-corporate-primary/90 text-white">
