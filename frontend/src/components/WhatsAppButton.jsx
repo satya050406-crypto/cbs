@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
+
 
 const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
@@ -12,15 +12,14 @@ const WhatsAppButton = () => {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-      style={{
-        backgroundColor: '#25D366',
-        color: 'white',
-        borderRadius: '14px'
-      }}
+      className="fixed bottom-6 right-6 z-50 !bg-transparent !p-0 !border-0 hover:scale-110 transition-transform duration-300 focus:outline-none"
       aria-label="Contact us on WhatsApp"
     >
-      <MessageCircle size={24} />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        alt="WhatsApp"
+        className="w-14 h-14 drop-shadow-lg"
+      />
     </button>
   );
 };

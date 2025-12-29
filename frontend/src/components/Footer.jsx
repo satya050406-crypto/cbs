@@ -1,110 +1,79 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
+    <footer className="bg-gray-100 dark:bg-gray-900 pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand & Address */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div 
-                className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white"
-                style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)' }}
-              >
-                CBS
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900">
-                CBS
-              </h3>
+            <div className="flex items-center space-x-2 mb-6">
+              <span className="material-icons text-corporate-primary text-2xl">account_balance</span>
+              <span className="font-display text-xl font-bold text-corporate-primary dark:text-white">
+                NANGIA <span className="text-corporate-secondary">&</span> CO
+              </span>
             </div>
-            <p className="text-sm mb-6 text-slate-600 leading-relaxed">
-              Your trusted partner for all financial, taxation, and business setup needs. Expert solutions with transparency and efficiency.
-            </p>
-            <div className="flex gap-2">
-              <a href="#" className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:bg-purple-100 bg-white border border-slate-200">
-                <Facebook size={16} className="text-slate-600" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:bg-purple-100 bg-white border border-slate-200">
-                <Twitter size={16} className="text-slate-600" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:bg-purple-100 bg-white border border-slate-200">
-                <Linkedin size={16} className="text-slate-600" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:bg-purple-100 bg-white border border-slate-200">
-                <Instagram size={16} className="text-slate-600" />
-              </a>
+            <div className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              <p className="mb-4">
+                <strong className="text-gray-900 dark:text-white">Corporate Office</strong><br />
+                A-109, Sector 136,<br />
+                Noida - 201304, Uttar Pradesh, India
+              </p>
+              <p>+91 120 2598000</p>
+              <p>query@nangia.com</p>
+            </div>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-corporate-primary dark:hover:text-white transition-colors"><i className="material-icons text-lg">facebook</i></a>
+              <a href="#" className="text-gray-400 hover:text-corporate-primary dark:hover:text-white transition-colors"><i className="material-icons text-lg">photo_camera</i></a>
+              <a href="#" className="text-gray-400 hover:text-corporate-primary dark:hover:text-white transition-colors"><i className="material-icons text-lg">work</i></a>
+              <a href="#" className="text-gray-400 hover:text-corporate-primary dark:hover:text-white transition-colors"><i className="material-icons text-lg">ondemand_video</i></a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Important Links */}
           <div>
-            <h4 className="text-sm font-semibold mb-4 text-slate-900">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Our Services</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Why Choose Us</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Testimonials</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Contact</a></li>
+            <h5 className="font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Important Links</h5>
+            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Code of Ethics</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Brochures</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Alumni</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Media Contact</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Expertise */}
           <div>
-            <h4 className="text-sm font-semibold mb-4 text-slate-900">
-              Popular Services
-            </h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">GST Registration</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">ITR Filing</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Company Registration</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Tax Planning</a></li>
-              <li><a href="#" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">Accounting Services</a></li>
+            <h5 className="font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Expertise</h5>
+            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Taxation</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Audit & Assurance</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Regulatory</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">M&A</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Risk Advisory</a></li>
+              <li><a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Cybersecurity</a></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-sm font-semibold mb-4 text-slate-900">
-              Get In Touch
-            </h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 flex-shrink-0 text-purple-500" />
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  123 Business District, Finance Plaza, Mumbai - 400001
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={18} className="text-purple-500" />
-                <a href="tel:+919354419950" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">
-                  +91 93544 19950
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail size={18} className="text-purple-500" />
-                <a href="mailto:info@cafinancial.com" className="text-sm text-slate-600 hover:text-purple-600 transition-colors">
-                  info@cafinancial.com
-                </a>
-              </div>
-            </div>
+          {/* Newsletter */}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+            <h5 className="font-bold text-gray-900 dark:text-white mb-4">Subscribe to our newsletter</h5>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Get the latest industry insights directly to your inbox.</p>
+            <form className="space-y-3">
+              <input type="email" placeholder="Email Address" className="w-full bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-corporate-primary dark:text-white" />
+              <button type="submit" className="w-full bg-corporate-primary text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded hover:bg-corporate-primary/90 transition-colors">Subscribe</button>
+            </form>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-200">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-slate-500">
-              © 2025 CA Financial Services. All rights reserved.
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-sm text-slate-500 hover:text-purple-600 transition-colors">Privacy Policy</a>
-              <a href="#" className="text-sm text-slate-500 hover:text-purple-600 transition-colors">Terms of Service</a>
-              <a href="#" className="text-sm text-slate-500 hover:text-purple-600 transition-colors">Disclaimer</a>
-            </div>
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 dark:text-gray-400">
+          <p>© 2025 Nangia & Co LLP. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Cookie Policy</a>
+            <a href="#" className="hover:text-corporate-primary dark:hover:text-white transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>
