@@ -29,7 +29,7 @@ export const NavBody = ({ children, className }) => {
                 maxWidth: isScrolled ? "1200px" : "100%",
                 borderRadius: isScrolled ? "9999px" : "0px",
                 y: isScrolled ? 12 : 0,
-                backgroundColor: "rgba(255, 255, 255, 0.9)", // You might want to make this configurable
+                backgroundColor: "rgba(0, 0, 0, 0.9)", // Black background
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className={cn(
@@ -59,15 +59,15 @@ export const NavItems = ({ items, className, activeIdx }) => {
                     <span className={cn(
                         "relative z-10 transition-colors",
                         (activeIdx === idx || hoveredIdx === idx)
-                            ? "text-black dark:text-white"
-                            : "text-neutral-600 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white"
+                            ? "text-white"
+                            : "text-neutral-400 hover:text-white"
                     )}>
                         {item.name}
                     </span>
                     {(hoveredIdx === idx || (hoveredIdx === null && activeIdx === idx)) && (
                         <motion.span
                             layoutId="hover-pill"
-                            className="absolute inset-0 z-0 bg-neutral-300 dark:bg-neutral-700 rounded-full"
+                            className="absolute inset-0 z-0 bg-neutral-800 rounded-full"
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                     )}
@@ -79,7 +79,7 @@ export const NavItems = ({ items, className, activeIdx }) => {
 
 export const NavbarLogo = ({ className, children }) => {
     return (
-        <div className={cn("flex items-center gap-2 font-bold text-xl text-neutral-800 dark:text-neutral-100", className)}>
+        <div className={cn("flex items-center gap-2 font-bold text-xl text-white", className)}>
             {children || "Logo"}
         </div>
     );

@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
+import { allCategories } from '../data/servicesData';
 import QuoteSection from '../components/QuoteSection';
 import Insights from '../components/Insights';
 import Team from '../components/Team';
@@ -21,11 +22,9 @@ const HomePage = () => {
           <Hero />
           <Stats />
         </section>
-        <section id="about">
-          <AboutUs />
-        </section>
+
         <section id="expertise">
-          <Services />
+          <Services categories={allCategories} />
         </section>
         <section>
           <QuoteSection />
