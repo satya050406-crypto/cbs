@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { personalCategories, businessCategories } from '../data/servicesData';
 import {
   Navbar,
   NavBody,
@@ -13,23 +15,45 @@ import {
   MobileNavMenu,
 } from "./ui/resizable-navbar";
 
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_v3.png';
+
+const navItems = [
+  { name: "About Us", link: "/about" },
+  { name: "Mission", link: "/mission" },
+  { name: "Personal Services", link: "/expertise/personal" },
+  { name: "Business Services", link: "/expertise/business" },
+  { name: "Insights", link: "/insights" },
+  { name: "Global Desk", link: "/global-desk" },
+  { name: "Calculator", link: "/calculator" },
+  { name: "Careers", link: "/careers" },
+];
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(-1);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
-  const navItems = [
-    { name: "About Us", link: "/about" },
-    { name: "Mission", link: "/mission" },
-    { name: "Personal Services", link: "/expertise/personal" },
-    { name: "Business Services", link: "/expertise/business" },
-    { name: "Insights", link: "/#insights" },
-    { name: "Global Desk", link: "/#global-desk" },
-    { name: "Calculator", link: "/calculator" },
-    { name: "Careers", link: "/#careers" },
-  ];
+  React.useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    const allServices = [
+      ...personalCategories.flatMap(cat => cat.services.map(s => ({ ...s, category: cat.category_name, link: '/expertise/personal' }))),
+      ...businessCategories.flatMap(cat => cat.services.map(s => ({ ...s, category: cat.category_name, link: '/expertise/business' })))
+    ];
+
+    const results = allServices.filter(service =>
+      service.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchQuery]);
+
+
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -76,34 +100,78 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-4">
             {/* Search Bar */}
-            <div className="relative flex items-center">
-              <AnimatePresence>
-                {isSearchOpen && (
+            <div className="relative flex items-center" onMouseLeave={() => { if (!searchQuery && isSearchOpen) setIsSearchOpen(false); }}>
+              <AnimatePresence mode="wait">
+                {isSearchOpen ? (
                   <motion.div
+                    key="search-input"
                     initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: 200, opacity: 1 }}
+                    animate={{ width: 300, opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden mr-2"
+                    className="relative flex items-center bg-black/5 border border-black/10 backdrop-blur-md rounded-full px-2"
                   >
+                    <Search size={18} className="text-neutral-500 ml-2 shrink-0" />
                     <input
                       type="text"
-                      placeholder="Search..."
-                      className="w-full bg-white/50 dark:bg-black/50 border border-gray-200 dark:border-gray-700 backdrop-blur-md rounded-full px-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-corporate-primary/50 text-gray-800 dark:text-gray-200 placeholder-gray-400"
+                      placeholder="Search services..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full bg-transparent border-none focus:ring-0 px-3 py-2 text-sm text-neutral-900 placeholder-neutral-500 focus:outline-none"
                       autoFocus
                     />
+                    <button
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setSearchQuery("");
+                      }}
+                      className="p-1.5 rounded-full hover:bg-black/10 transition-colors text-neutral-500 hover:text-black"
+                    >
+                      <X size={16} />
+                    </button>
+
+                    {searchResults.length > 0 && (
+                      <div className="absolute top-12 left-0 w-full bg-white rounded-xl shadow-xl border border-neutral-200 overflow-hidden z-[50] max-h-80 overflow-y-auto">
+                        {searchResults.map((result, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => {
+                              setIsSearchOpen(false);
+                              setSearchQuery("");
+                              navigate(`${result.link}?service=${encodeURIComponent(result.name)}`);
+                            }}
+                            className="w-full text-left px-4 py-3 hover:bg-neutral-50 transition-colors border-b border-neutral-100 last:border-0"
+                          >
+                            <div className="font-medium text-neutral-900 text-sm truncate">{result.name}</div>
+                            <div className="text-xs text-neutral-500 truncate">{result.category}</div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
+                ) : (
+                  <motion.button
+                    key="search-trigger"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setIsSearchOpen(true)}
+                    className="group flex items-center justify-center p-2 rounded-full hover:bg-black/5 transition-all duration-300 text-neutral-600 hover:text-black"
+                  >
+                    <Search size={20} />
+                    <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 text-sm font-medium">
+                      Search Services
+                    </span>
+                  </motion.button>
                 )}
               </AnimatePresence>
-              <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300"
-              >
-                {isSearchOpen ? <X size={20} /> : <Search size={20} />}
-              </button>
             </div>
 
-            <NavbarButton variant="primary" className="bg-corporate-primary hover:bg-corporate-primary/90 text-white">
+            <NavbarButton
+              variant="primary"
+              className="bg-corporate-primary hover:bg-corporate-primary/90 text-white"
+              onClick={() => navigate('/contact')}
+            >
               Contact Us
             </NavbarButton>
           </div>
@@ -138,15 +206,38 @@ const Header = () => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search services..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-gray-50 dark:bg-neutral-800 border-none rounded-lg pl-10 pr-4 py-3 text-base focus:ring-2 focus:ring-corporate-primary/20 outline-none"
                 />
+                {searchResults.length > 0 && searchQuery && (
+                  <div className="absolute top-full mt-2 left-0 w-full bg-white dark:bg-neutral-900 rounded-xl shadow-xl border border-gray-100 dark:border-neutral-800 overflow-hidden z-[50] max-h-60 overflow-y-auto">
+                    {searchResults.map((result, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          setSearchQuery("");
+                          navigate(`${result.link}?service=${encodeURIComponent(result.name)}`);
+                        }}
+                        className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors border-b border-gray-50 dark:border-neutral-800 last:border-0"
+                      >
+                        <div className="font-medium text-gray-900 dark:text-gray-100 text-sm truncate">{result.name}</div>
+                        <div className="text-xs text-gray-500 truncate">{result.category}</div>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="flex w-full flex-col gap-4 mt-4">
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate('/contact');
+                }}
                 variant="primary"
                 className="w-full bg-corporate-primary text-white"
               >

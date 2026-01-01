@@ -29,15 +29,6 @@ const HomePage = () => {
         <section>
           <QuoteSection />
         </section>
-        <section id="insights">
-          <Insights />
-        </section>
-        <section id="global-desk">
-          <Team />
-        </section>
-        <section id="careers">
-          <Careers />
-        </section>
       </main>
       <Footer />
       <WhatsAppButton />

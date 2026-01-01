@@ -22,14 +22,14 @@ export const NavBody = ({ children, className }) => {
 
     return (
         <motion.div
-            layout
+
             initial={{ width: "100%", borderRadius: 0, y: 0, border: "0px solid transparent" }}
             animate={{
                 width: isScrolled ? "80%" : "100%",
                 maxWidth: isScrolled ? "1200px" : "100%",
                 borderRadius: isScrolled ? "9999px" : "0px",
                 y: isScrolled ? 12 : 0,
-                backgroundColor: "rgba(0, 0, 0, 0.9)", // Black background
+                backgroundColor: "rgba(245, 245, 235, 0.95)", // Sandish off-white
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className={cn(
@@ -47,7 +47,7 @@ export const NavItems = ({ items, className, activeIdx }) => {
     const [hoveredIdx, setHoveredIdx] = useState(null);
 
     return (
-        <div className={cn("hidden md:flex items-center gap-1", className)}>
+        <div className={cn("hidden md:flex items-center gap-4", className)}>
             {items.map((item, idx) => (
                 <a
                     key={idx}
@@ -59,15 +59,15 @@ export const NavItems = ({ items, className, activeIdx }) => {
                     <span className={cn(
                         "relative z-10 transition-colors",
                         (activeIdx === idx || hoveredIdx === idx)
-                            ? "text-white"
-                            : "text-neutral-400 hover:text-white"
+                            ? "text-neutral-900"
+                            : "text-neutral-500 hover:text-neutral-900"
                     )}>
                         {item.name}
                     </span>
                     {(hoveredIdx === idx || (hoveredIdx === null && activeIdx === idx)) && (
                         <motion.span
                             layoutId="hover-pill"
-                            className="absolute inset-0 z-0 bg-neutral-800 rounded-full"
+                            className="absolute inset-0 z-0 bg-neutral-200/50 rounded-full"
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                     )}

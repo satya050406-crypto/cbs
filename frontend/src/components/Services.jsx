@@ -11,9 +11,26 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useSearchParams } from 'react-router-dom';
+
 const Services = ({ categories = [], title = "Our Expertise" }) => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedService, setSelectedService] = useState(null);
+    const [searchParams] = useSearchParams();
+
+    React.useEffect(() => {
+        const serviceName = searchParams.get('service');
+        if (serviceName && categories.length > 0) {
+            for (const cat of categories) {
+                const foundService = cat.services.find(s => s.name === serviceName);
+                if (foundService) {
+                    setSelectedCategory(cat);
+                    setTimeout(() => setSelectedService(foundService), 500); // Slight delay for animation
+                    break;
+                }
+            }
+        }
+    }, [searchParams, categories]);
 
     // If no categories provided, we don't render or could render a default. 
     // But better to expect it from parent.
@@ -52,7 +69,7 @@ const Services = ({ categories = [], title = "Our Expertise" }) => {
                                         onClick={() => setSelectedCategory(cat)}
                                         className="group bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-neutral-800 cursor-pointer relative overflow-hidden"
                                     >
-                                        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-corporate-primary to-corporate-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        <div className="absolute top-0 left-0 w-1.5 h-full bg-corporate-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                                         <div className="p-4 bg-gray-50 dark:bg-neutral-800 rounded-xl text-corporate-primary w-fit mb-6 group-hover:bg-corporate-primary group-hover:text-white transition-colors duration-300">
                                             <cat.icon size={32} strokeWidth={1.5} />
@@ -144,67 +161,44 @@ const Services = ({ categories = [], title = "Our Expertise" }) => {
                                     </button>
                                 </div>
 
-                                <div className="p-6 space-y-8">
-                                    {/* Get Started Form */}
-                                    <div>
-                                        <h4 className="flex items-center text-lg font-bold text-gray-900 dark:text-white mb-4">
-                                            <span className="w-8 h-8 rounded-full bg-corporate-primary/10 flex items-center justify-center text-corporate-primary mr-3 text-sm">1</span>
-                                            Get Started
-                                        </h4>
-                                        <p className="text-sm text-gray-500 mb-6 pl-11">Fill in your details and we'll contact you within 24 hours.</p>
-
-                                        <div className="space-y-4 pl-11">
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name *</label>
-                                                <div className="relative">
-                                                    <span className="absolute left-3 top-2.5 text-gray-400"><User size={18} /></span>
-                                                    <input type="text" placeholder="Enter your full name" className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number *</label>
-                                                <div className="relative">
-                                                    <span className="absolute left-3 top-2.5 text-gray-400"><Phone size={18} /></span>
-                                                    <input type="tel" placeholder="Enter your phone number" className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message (Optional)</label>
-                                                <div className="relative">
-                                                    <span className="absolute left-3 top-3 text-gray-400"><MessageSquare size={18} /></span>
-                                                    <textarea rows="3" placeholder="Tell us about your requirements..." className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 focus:ring-2 focus:ring-corporate-primary/20 focus:border-corporate-primary outline-none transition-all resize-none"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div className="p-8 flex flex-col items-center justify-center text-center space-y-6">
+                                    <div className="w-20 h-20 bg-[#25D366]/10 rounded-full flex items-center justify-center text-[#25D366] mb-2">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-10 h-10" />
                                     </div>
 
-                                    {/* Upload Documents */}
                                     <div>
-                                        <h4 className="flex items-center text-lg font-bold text-gray-900 dark:text-white mb-4">
-                                            <span className="w-8 h-8 rounded-full bg-corporate-primary/10 flex items-center justify-center text-corporate-primary mr-3 text-sm">2</span>
-                                            Upload Documents
+                                        <h4 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-3">
+                                            Interested in this service?
                                         </h4>
-                                        <div className="pl-11">
-                                            <div className="border-2 border-dashed border-gray-200 dark:border-neutral-700 rounded-lg p-8 text-center hover:border-corporate-primary transition-colors cursor-pointer bg-gray-50/50 dark:bg-neutral-800/50">
-                                                <div className="w-12 h-12 bg-white dark:bg-neutral-800 rounded-full shadow-sm flex items-center justify-center mx-auto mb-4 text-corporate-primary">
-                                                    <Upload size={24} />
-                                                </div>
-                                                <p className="text-gray-900 dark:text-white font-medium mb-1">Click to upload or drag and drop</p>
-                                                <p className="text-xs text-gray-500">PDF, DOC, JPG (Max 10MB)</p>
-                                            </div>
-                                        </div>
+                                        <p className="text-gray-500 dark:text-gray-400 max-w-sm mx-auto">
+                                            Connect with us directly on WhatsApp to discuss your requirements and get a personalized quote.
+                                        </p>
                                     </div>
-                                </div>
 
-                                <div className="p-6 border-t border-gray-100 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-800/50 flex items-center justify-end gap-3 sticky bottom-0">
+                                    <div className="p-4 bg-gray-50 dark:bg-neutral-800 rounded-xl border border-gray-100 dark:border-neutral-700 w-full max-w-md">
+                                        <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-2 text-left">Pre-written message:</p>
+                                        <p className="text-gray-700 dark:text-gray-300 italic text-left p-3 bg-white dark:bg-neutral-900 rounded-lg border border-gray-100 dark:border-neutral-800">
+                                            "Hi, I am interested in <span className="font-bold text-corporate-primary">{selectedService.name}</span>. Please provide more details regarding the process and pricing."
+                                        </p>
+                                    </div>
+
+                                    <button
+                                        onClick={() => {
+                                            const phoneNumber = '919354419950';
+                                            const message = `Hi, I am interested in ${selectedService.name}. Please provide more details regarding the process and pricing.`;
+                                            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+                                        }}
+                                        className="w-full max-w-md bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#25D366]/25 transition-all flex items-center justify-center gap-3 group"
+                                    >
+                                        <span>Chat on WhatsApp</span>
+                                        <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                                    </button>
+
                                     <button
                                         onClick={() => setSelectedService(null)}
-                                        className="px-6 py-2.5 rounded-lg font-medium text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-neutral-700 transition-colors"
+                                        className="text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                                     >
-                                        Cancel
-                                    </button>
-                                    <button className="px-6 py-2.5 rounded-lg font-bold bg-corporate-primary text-white hover:bg-corporate-primary/90 shadow-lg shadow-corporate-primary/25 transition-all">
-                                        Register Query
+                                        Maybe later
                                     </button>
                                 </div>
                             </motion.div>

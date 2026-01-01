@@ -8,6 +8,10 @@ import MissionPage from "./pages/MissionPage";
 import CalculatorPage from "./pages/CalculatorPage";
 import PersonalServicesPage from "./pages/PersonalServicesPage";
 import BusinessServicesPage from "./pages/BusinessServicesPage";
+import InsightsPage from "./pages/InsightsPage";
+import GlobalDeskPage from "./pages/GlobalDeskPage";
+import CareersPage from "./pages/CareersPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
           <Route path="/calculator" element={<CalculatorPage />} />
           <Route path="/expertise/personal" element={<PersonalServicesPage />} />
           <Route path="/expertise/business" element={<BusinessServicesPage />} />
+          <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/global-desk" element={<GlobalDeskPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
